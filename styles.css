@@ -1,0 +1,58 @@
+body {
+    background-color: darkslateblue;
+}
+
+h1 {
+    font-family: 'Papyrus';
+    text-align: center;
+    color: antiquewhite;
+    font-weight: 700;
+}
+
+.green {
+    background-color: green;
+    width: 200px;
+    height: 200px;
+    border-radius: 25%;
+    border: 8px solid black;
+    margin-right: 25px;
+}
+
+.red {
+    background-color: red;
+    width: 200px;
+    height: 200px;
+    border-radius: 25%;
+    border: 8px solid black;
+}
+
+.yellow {
+    background-color: yellow;
+    width: 200px;
+    height: 200px;
+    border-radius: 25%;
+    margin-right: 25px;
+    border: 8px solid black;
+}
+
+.blue {
+    background-color: blue;
+    width: 200px;
+    height: 200px;
+    border-radius: 25%;
+    border: 8px solid black;
+}
+
+.firstRow,
+.secondRow {
+    display: flex;
+    margin: 25px 25px;
+}
+
+.center {
+    align-items: center;
+}
+
+.one, .two, .three, .four{
+    opacity: 0.6;
+}
