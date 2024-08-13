@@ -1,48 +1,83 @@
-$(document).on('keypress', function () {
-    $('h1').text("Level 1");
-    var randomNum = Math.floor(Math.random() * 4 + 1);
-    if (randomNum === 1) {
-        $('div.green').toggleClass('one');
-    } else if (randomNum === 2) {
-        $('div.red').toggleClass('two');
-    } else if (randomNum === 3) {
-        $('div.yellow').toggleClass('three');
-    }
-    else {
-        $('div.blue').toggleClass('four');
-    }
+var tileArrBlinked = [];
+var tiles = ['green', 'red', 'yellow', 'blue'];
+var userClicks = [];
 
-    console.log(randomNum);
+
+var gameStart = $(document).on('keypress', () => {
+    startAGame();
+    var win = arraysHaveExactSameStringValues();
 });
 
-// var gamePattern = [];
+
+function startAGame() {
+    console.log("Game has started!!");
+    var til = tileColor();
+    console.log(tileArrBlinked);
+    console.log(userClicks);
+}
 
 
-// var divColors = ['red', 'blue', 'green', 'yellow'];
 
-// var randomChosenColour = divColors[randomNum];
+function tileColor() {
+    var randomClick = Math.floor((Math.random() * 4));
 
-// function nextSequence() {
-//     var randomNum = Math.floor(Math.random() * 4);
-//     return randomNum;
-// }
+    if (randomClick === 0) {
+        $('div.green').animate({ 'opacity': 0.3 });
+        
+        // tileColor();
+    } else if (randomClick === 1) {
+        $('div.red').animate({ 'opacity': 0.3 });
+       
+        // tileColor();
+    } else if (randomClick === 2) {
+        $('div.yellow').animate({ 'opacity': 0.3 });
+       
+        // tileColor();
+    } else if (randomClick === 3) {
+        $('div.blue').animate({ 'opacity': 0.3 });
 
-// gamePattern.push(randomChosenColour);
+        
+        // tileColor();
+    }
 
-// $('div').on('click', function () {
-//     var userChosenColor = [];
-//     if (this.hasClass('green')) {
-//         userChosenColor.push('green');
-//     } else if (this.hasClass('red')) {
-//         userChosenColor.push('red');
-//     } else if (this.hasClass('yellow')) {
-//         userChosenColor.push('yellow');
-//     } else {
-//         userChosenColor.push('blue');
-//     }
+    return tileArrBlinked.push(tiles[randomClick]);
 
-// })
+}
 
-// function playSound(name) {
-    
-// }
+$('div.green').on('click', () => {
+    userClicks.push('green');
+});
+
+$('div.red').on('click', () => {
+    userClicks.push('red');
+});
+
+$('div.yellow').on('click', () => {
+    userClicks.push('yellow');
+});
+
+$('div.blue').on('click', () => {
+    userClicks.push('blue');
+});
+
+function restart() {
+    $('h1').text("Game Over, Press Any Key to Start the Game");
+    // startAGame();
+}
+
+
+function arraysHaveExactSameStringValues(tileArrBlinked, userClicks) {
+    // Check if arrays have the same length
+    if (tileArrBlinked.length !== userClicks.length) {
+        return restart();  // Call restart if lengths differ
+    }
+
+    // Compare each element in the arrays
+    for (let i = 0; i < tileArrBlinked.length; i++) {
+        if (tileArrBlinked[i] !== userClicks[i]) {
+            return restart();  // Call restart if any elements differ
+        }
+    }
+
+    return startAGame();  // Call startAGame if all elements match
+}
